@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Page with DataLayer</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px;
+      width: 300px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+
+  <script>
+    // Initialize dataLayer
+    window.dataLayer = window.dataLayer || [];
+
+    // Page Load Event
+    window.dataLayer.push({
+      event: "page_view",
+      page_name: "home_page",
+      page_category: "demo"
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Demo Page</h1>
+
+    <!-- Buttons -->
+    <button id="btn1">Button 1</button>
+    <button id="btn2">Button 2</button>
+
+    <!-- Form -->
+    <form id="demoForm">
+      <input type="text" id="name" placeholder="Enter Name" required />
+      <input type="email" id="email" placeholder="Enter Email" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Button Click Tracking
+    document.getElementById("btn1").addEventListener("click", function () {
+      dataLayer.push({
+        event: "button_click",
+        button_name: "button_1"
+      });
+      alert("Button 1 clicked");
+    });
+
+    document.getElementById("btn2").addEventListener("click", function () {
+      dataLayer.push({
+        event: "button_click",
+        button_name: "button_2"
+      });
+      alert("Button 2 clicked");
+    });
+
+    // Form Submission Tracking
+    document.getElementById("demoForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+
+      dataLayer.push({
+        event: "form_submit",
+        form_name: "demo_form",
+        user_name: name,
+        user_email: email
+      });
+
+      alert("Form Submitted!");
+    });
+  </script>
+
+</body>
+</html>
+
